@@ -12,5 +12,27 @@ pipeline {
             }
          }
       }
+      stage('Promote') {
+         steps {
+            script {
+               def promotionConfig = [
+                   // Mandatory parameters
+                   'buildName'          : buildInfo.name,
+                   'buildNumber'        : buildInfo.number,
+                   'targetRepo'         : 'app-docker-stable',
+
+                   // Optional parameters
+                   'comment'            : 'this is the promotion comment',
+                   'sourceRepo'         : 'app-docker-staging',
+                   'status'             : 'Released',
+                   'includeDependencies': true,
+                   'copy'               : true
+               ]
+
+               // Promote build
+               server.promote promotionConfig
+            }
+         }
+      }
    }
 }
