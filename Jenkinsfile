@@ -4,7 +4,7 @@ pipeline {
       stage('build') {
          steps {
             script {
-               server = Artifactory.newServer url: 'https://registry.localhost', credentials: 'arti-creds'
+               server = Artifactory.newServer url: 'https://registry.localhost', credentialsId: 'arti-creds'
                buildInfo = Artifactory.newBuildInfo()
                echo ${buildInfo}
             }
