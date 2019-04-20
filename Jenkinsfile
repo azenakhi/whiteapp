@@ -6,7 +6,8 @@ pipeline {
             script {
                server = Artifactory.newServer url: 'https://registry.localhost', credentialsId: 'arti-creds'
                buildInfo = Artifactory.newBuildInfo()
-               echo "${buildInfo}"
+               echo "${buildInfo.buildNumber}"
+               echo "${buildInfo.buildName}"
             }
          }
       }
