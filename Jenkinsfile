@@ -8,7 +8,7 @@ pipeline {
                rtDocker = Artifactory.docker server: server
           
                buildInfo = rtDocker.push 'app-docker-staging.registry.localhost/whiteapp:latest', 'app-docker-staging'
-               server.publishBuildInfo buildInfo
+               rtDocker.publishBuildInfo buildInfo
             }
          }
       }
