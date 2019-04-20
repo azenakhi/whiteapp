@@ -16,9 +16,10 @@ pipeline {
             script {
                server = Artifactory.newServer url: 'https://registry.localhost', credentialsId: 'arti-creds'
                rtDocker = Artifactory.docker server: server
+               buildInfo = Artifactory.newBuildInfo()
           
-               buildInfo = rtDocker.push 'app-docker-staging.registry.localhost/whiteapp:latest', 'app-docker-staging'
-               //server.publishBuildInfo buildInfo
+               //buildInfo = rtDocker.push 'app-docker-staging.registry.localhost/whiteapp:latest', 'app-docker-staging'
+               server.publishBuildInfo buildInfo
             }
          }
       }
