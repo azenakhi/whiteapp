@@ -5,7 +5,7 @@ pipeline {
          steps {
             script {
                server = Artifactory.newServer url: 'https://registry.localhost', credentialsId: 'arti-creds'
-               rtDocker = Artifactory.docker credentialsId: 'arti-creds'
+               rtDocker = Artifactory.docker sever: server
                echo rtDocker
                buildInfo = Artifactory.newBuildInfo()
                echo "${buildInfo.number}"
