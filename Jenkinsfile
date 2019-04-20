@@ -3,8 +3,7 @@ pipeline {
    stages {
       stage('build') {
          steps {
-            sh 'curl -Iv http://artifactory:8081'
-            sh 'docker images'
+            sh 'docker login -u admin -padmin123 https://docker-remote.registry.localhost'
          }
       }
    }
