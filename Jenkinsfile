@@ -3,7 +3,11 @@ pipeline {
    stages {
       stage('build') {
          steps {
-            sh 'docker login -u admin -padmin123 https://docker-remote.registry.localhost'
+            script {
+               server = Artifactory.newServer url: 'https://registry.localhost', credentials: 'arti-creds'
+               buildInfo = Artifactory.newBuildInfo()
+               echo ${buildInfo}
+            }
          }
       }
    }
