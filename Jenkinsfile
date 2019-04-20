@@ -6,7 +6,7 @@ pipeline {
             script {
                 docker.withRegistry('https://app-docker-staging.registry.localhost', 'arti-creds') {
                     image = docker.build("whiteapp:${env.BUILD_ID}")
-                    customImage.push()
+                    image.push()
                 } 
             }
          }
