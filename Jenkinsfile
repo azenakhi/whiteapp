@@ -14,7 +14,7 @@ pipeline {
       stage('build') {
          steps {
             script {
-               server = Artifactory.newServer url: 'https://registry.localhost', credentialsId: 'arti-creds'
+               server = Artifactory.server 'arti'
                rtDocker = Artifactory.docker server: server
                buildInfo = Artifactory.newBuildInfo()
           
