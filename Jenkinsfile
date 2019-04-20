@@ -1,6 +1,16 @@
 pipeline {
    agent any
    stages {
+      stage('build1') {
+         steps {
+            script {
+                docker.withRegistry('https://registry.example.com', 'credentials-id') {
+                    image = docker.build("whiteapp:${env.BUILD_ID}")
+                    customImage.push()
+                } 
+            }
+         }
+      }
       stage('build') {
          steps {
             script {
@@ -12,6 +22,7 @@ pipeline {
             }
          }
       }
+
       stage('Promote') {
          steps {
             script {
