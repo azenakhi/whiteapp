@@ -26,7 +26,7 @@ pipeline {
                    'sourceRepo'         : 'app-docker-staging',
                    'status'             : 'Released',
                    'includeDependencies': true,
-                   'copy'               : true
+                   'copy'               : false
                ]
 
                // Promote build
