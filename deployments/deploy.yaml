@@ -1,0 +1,41 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: whiteapp
+  name: whiteapp
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: whiteapp
+  template:
+    metadata:
+      labels:
+        run: whiteapp
+    spec:
+      containers:
+      - image: app-docker-scratch.registry.localhost/whiteapp:${TAG}
+        imagePullPolicy: IfNotPresent
+        name: whiteapp
+      imagePullSecrets:
+      - name: reg-creds
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: whiteapp
+  name: whiteapp
+  namespace: default
+spec:
+  ports:
+  - nodePort: 32377
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: whiteapp
+  type: NodePort
