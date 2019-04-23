@@ -17,8 +17,8 @@ spec:
         run: whiteapp
     spec:
       containers:
-      - image: app-docker-scratch.registry.localhost/whiteapp:${TAG}
-        imagePullPolicy: IfNotPresent
+      - image: IMAGE:TAG
+        imagePullPolicy: Always
         name: whiteapp
       imagePullSecrets:
       - name: reg-creds
